@@ -27,16 +27,7 @@ class profile::base {
 
   # SSH server and client
   class { '::ssh::server':}
-  class { '::ssh::client':
-    options => {
-      'Host *' => {
-        'SendEnv'                   => 'LANG LC_*',
-        'HashKnownHosts'            => 'yes',
-        'GSSAPIAuthentication'      => 'yes',
-        'GSSAPIDelegateCredentials' => 'no',
-      },
-    },
-  }
+  class { '::ssh::client':}
 
   class { '::ntp':
     servers => [ '0.pool.ntp.org', '2.centos.pool.ntp.org', '1.rhel.pool.ntp.org'],
