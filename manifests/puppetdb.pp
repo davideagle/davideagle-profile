@@ -1,2 +1,4 @@
-include ::puppetdb
-include ::puppetdb::master::config
+class profile::puppetdb {
+  include ::puppetdb
+  include ::puppetdb::master::config
+}

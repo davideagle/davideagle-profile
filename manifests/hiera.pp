@@ -1,4 +1,5 @@
-# Hiera
-package { ['hiera', 'hiera-puppet']:
-  ensure => present,
+class profile::hiera {
+  package { ['hiera', 'hiera-puppet']:
+    ensure => present,
+  }
 }
