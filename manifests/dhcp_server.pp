@@ -1,5 +1,4 @@
 class profile::dhcp_server {
-  include mss::base
   include dhcp::server
 
   firewall { '100 Allow DHCP requests':
