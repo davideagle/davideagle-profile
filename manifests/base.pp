@@ -41,4 +41,9 @@ class profile::base {
     ],
 
   }
+
+  class { '::nagios::client':
+    nrpe_allowed_hosts => '127.0.0.1,194.105.253.31,172.21.66.222',
+    
+  }
 }
