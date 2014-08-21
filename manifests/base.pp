@@ -30,6 +30,15 @@ class profile::base {
   class { '::ssh::client':}
 
   class { '::ntp':
-    servers => [ '0.pool.ntp.org', '2.centos.pool.ntp.org', '1.rhel.pool.ntp.org'],
+    servers => [ 
+    'ntp1.simnet.is', 
+    'ntp2.simnet.is', 
+    'ntp3.simnet.is', 
+    '0.rhel.pool.ntp.org',
+    '1.rhel.pool.ntp.org',
+    '2.rhel.pool.ntp.org',
+    '3.rhel.pool.ntp.org'
+    ],
+
   }
 }
