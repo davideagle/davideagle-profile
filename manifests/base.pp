@@ -25,7 +25,10 @@
 class profile::base {
   
   ## Hiera lookups
-  $ntp_servers    = hiera('ntp::servers')
+  $ntp_servers        = hiera('ntp::servers')
+  $rsyslog_host       = hiera('rsyslog::client::host')
+  $rsyslog_pattern    = hiera('rsyslog::client::pattern')
+  
   
   include ::motd
 
@@ -45,8 +48,8 @@ class profile::base {
   class { 'rsyslog::client': 
     remote_servers => [
     {
-      host      => 'logs.simnet.is',
-      pattern   => 'auth.*,authpriv.*',
+      host      => $rsyslog_host,
+      pattern   => $rsyslog_pattern,
     },
   ]
   }
