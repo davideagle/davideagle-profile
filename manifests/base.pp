@@ -47,6 +47,13 @@ class profile::base {
     
   }
   
-  class { 'rsyslog::client': }
+  class { 'rsyslog::client': 
+    remote_servers => [
+    {
+      host      => 'logs.simnet.is',
+      pattern   => 'auth.*,authpriv.*',
+    },
+  ]
+  }
 
 }
