@@ -46,7 +46,6 @@ class profile::base {
     nrpe_allowed_hosts => '127.0.0.1,194.105.253.31,172.21.66.222',
     
   }
-  class { '::nagios::check::load': }
   class { '::nagios::check::swap': }
   class { '::nagios::check::ntp_time': }
 }
