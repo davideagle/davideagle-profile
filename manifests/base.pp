@@ -25,9 +25,10 @@
 class profile::base {
   
   ## Hiera lookups
-  $ntp_servers        = hiera('ntp::servers')
-  $rsyslog_host       = hiera('rsyslog::client::host')
-  $rsyslog_pattern    = hiera('rsyslog::client::pattern')
+  $ntp_servers          = hiera('ntp::servers')
+  $rsyslog_host         = hiera('rsyslog::client::host')
+  $rsyslog_pattern      = hiera('rsyslog::client::pattern')
+  $nrpe_allowed_hosts   = hiera('nagios::client::nrpe_allowed_hosts')
   
   
   include ::motd
@@ -41,7 +42,7 @@ class profile::base {
   }
 
   class { '::nagios::client':
-    nrpe_allowed_hosts => '127.0.0.1,194.105.253.31,172.21.66.222',
+    nrpe_allowed_hosts => $nrpe_allowed_hosts,
     
   }
   
