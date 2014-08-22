@@ -23,15 +23,19 @@
 # Copyright 2014 Rob Nelson
 #
 class profile::base {
+  
+  ## Hiera lookups
+  $ntp_servers    = hiera('ntp::servers')
+  
   include ::motd
 
   # SSH server and client
   include ::ssh::server
   include ::ssh::client
   
-  include ::ntp
-  $ntpservers = hiera('ntp::servers', {})
-  create_resources('ntp::servers', $ntpservers)
+  class {'::ntp':
+    servers => $ntp_servers
+  }
 
   class { '::nagios::client':
     nrpe_allowed_hosts => '127.0.0.1,194.105.253.31,172.21.66.222',
