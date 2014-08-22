@@ -28,19 +28,10 @@ class profile::base {
   # SSH server and client
   include ::ssh::server
   include ::ssh::client
-
-  class { '::ntp':
-    servers => [ 
-    'ntp1.simnet.is', 
-    'ntp2.simnet.is', 
-    'ntp3.simnet.is', 
-    '0.rhel.pool.ntp.org',
-    '1.rhel.pool.ntp.org',
-    '2.rhel.pool.ntp.org',
-    '3.rhel.pool.ntp.org'
-    ],
-
-  }
+  
+  include ::ntp
+  $ntpservers = hiera('ntp::servers', {})
+  create_resources('ntp::servers', $ntpservers)
 
   class { '::nagios::client':
     nrpe_allowed_hosts => '127.0.0.1,194.105.253.31,172.21.66.222',
