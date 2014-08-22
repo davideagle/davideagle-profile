@@ -26,8 +26,8 @@ class profile::base {
   include ::motd
 
   # SSH server and client
-  class { '::ssh::server':}
-  class { '::ssh::client':}
+  include ::ssh::server
+  include ::ssh::client
 
   class { '::ntp':
     servers => [ 
