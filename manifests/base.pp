@@ -29,6 +29,7 @@ class profile::base {
   $rsyslog_host         = hiera('rsyslog::client::host')
   $rsyslog_pattern      = hiera('rsyslog::client::pattern')
   $nrpe_allowed_hosts   = hiera('nagios::client::nrpe_allowed_hosts')
+  $users_utkerfi        = hiera('users_utkerfi')
   
   
   include ::motd
@@ -36,6 +37,9 @@ class profile::base {
   # SSH server and client
   include ::ssh::server
   include ::ssh::client
+  include ::users
+  
+  users { utkerfi: }
   
   class {'::ntp':
     servers => $ntp_servers
@@ -46,7 +50,7 @@ class profile::base {
     
   }
   
-  class { 'rsyslog::client': 
+  class { '::rsyslog::client': 
     remote_servers => [
     {
       host      => $rsyslog_host,
@@ -54,7 +58,5 @@ class profile::base {
     },
   ]
   }
-  
-  users { utkerfi: }
 
 }
