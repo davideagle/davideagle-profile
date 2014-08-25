@@ -37,11 +37,12 @@ class profile::base {
   include ::ssh::server
   include ::ssh::client
   
-  class {'::users':
-
-    localusers => $users_utkerfi,
-    
-	}
+  class users (
+    $myusers,
+    $mygroups,
+  ){
+    create_resources(user, $users_utkerfi)
+  }
   
   users { utkerfi: }
   
