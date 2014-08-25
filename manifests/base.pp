@@ -59,5 +59,5 @@ class profile::base {
   }
   
   create_resources('account', $accounts)
-
+ 
 }
