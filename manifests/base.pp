@@ -39,7 +39,7 @@ class profile::base {
   
   class {'::users':
 
-    users => $users_utkerfi,
+    localusers => $users_utkerfi,
     
 	}
   
