@@ -16,11 +16,11 @@
 #
 # === Authors
 #
-# Rob Nelson <rnelson0@gmail.com>
+# davidoj <davidoj0@siminn.is>
 #
 # === Copyright
 #
-# Copyright 2014 Rob Nelson
+# Siminn
 #
 class profile::base {
   
@@ -30,14 +30,20 @@ class profile::base {
   $rsyslog_pattern      = hiera('rsyslog::client::pattern')
   $nrpe_allowed_hosts   = hiera('nagios::client::nrpe_allowed_hosts')
   $users_utkerfi        = hiera('users_utkerfi')
-  
+  $groups_utkerfi       = hiera('groups_utkerfi')
   
   include ::motd
 
   # SSH server and client
   include ::ssh::server
   include ::ssh::client
-  include ::users
+  
+  class {'::users':
+
+    users => $users_utkerfi,
+    groups => $groups_utkerfi,
+    
+	}
   
   users { utkerfi: }
   
