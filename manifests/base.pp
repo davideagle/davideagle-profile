@@ -38,7 +38,6 @@ class profile::base {
   include ::ssh::server
   include ::ssh::client
   
-  users { utkerfi: }
   
   class {'::ntp':
     servers => $ntp_servers
