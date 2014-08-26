@@ -59,8 +59,8 @@ class profile::base {
   
   class { '::resolv_conf':
     nameservers   => $resolv_conf['nameservers'],
+    searchpath    => $resolv_conf['searchpath'],
     domain        => $resolv_conf['domain'],
-    searchpath    => $resolv_conf['searchpath'] 
   }
   
   create_resources('account', $users_utkerfi)
