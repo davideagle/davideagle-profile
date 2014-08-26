@@ -30,7 +30,7 @@ class profile::base {
   $rsyslog_pattern      = hiera('rsyslog::client::pattern')
   $nrpe_allowed_hosts   = hiera('nagios::client::nrpe_allowed_hosts')
   $users_utkerfi        = hiera('users_utkerfi')
-  $nameservers          = hiera('resolv_conf::nameservers')
+  $resolv_conf          = hiera_hash('resolv_conf')
   
   include ::motd
 
@@ -58,7 +58,7 @@ class profile::base {
   }
   
   class { '::resolv_conf':
-    nameservers => $nameservers,
+    nameservers => $resolv_conf['nameservers'],
   }
   
   create_resources('account', $users_utkerfi)
